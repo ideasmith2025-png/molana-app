@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مثنوی مولانا</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="header">
+    <select id="select-dafar">
+        <option value="daf1.json">دفتر اول</option>
+        <!-- دفترهای دیگر بعداً اضافه می‌شوند -->
+    </select>
+    <input type="text" id="search" placeholder="جستجو...">
+    <button id="settings-btn">⚙️</button>
+</div>
+
+<div id="card-container">
+    <!-- کارت‌ها توسط JS ساخته می‌شوند -->
+</div>
+
+<div id="settings-panel">
+    <h3>تنظیمات</h3>
+    <label><input type="checkbox" id="auto-play"> پخش خودکار</label><br>
+    <label>زمان مکث (ثانیه): <input type="number" id="pause-time" value="5" min="1" max="30"></label><br>
+    <label><input type="checkbox" id="swipe"> حرکت با کشیدن</label><br>
+    <label>تم:
+        <select id="theme-select">
+            <option value="classic">کلاسیک</option>
+            <option value="dark">شب</option>
+            <option value="nature">طبیعت</option>
+        </select>
+    </label>
+</div>
+
+<script src="app.js"></script>
+</body>
+      </html>
