@@ -20,8 +20,11 @@ const descBox = document.querySelector(".desc-box");
 const topBar = document.getElementById("top-bar");
 const readerArea = document.getElementById("reader-area");
 const settingsBtn = document.getElementById("settings-btn");
+const settingsPanel = document.getElementById("settings-panel");
 const selectDafar = document.getElementById("select-dafar");
 const searchInput = document.getElementById("search");
+const autoPlayToggle = document.getElementById("auto-play-toggle");
+const swipeToggle = document.getElementById("swipe-toggle");
 
 // ==================== رندر کارت ====================
 function renderCard(index) {
@@ -66,7 +69,7 @@ cardBox.addEventListener("touchstart", (e) => {
 });
 
 cardBox.addEventListener("touchend", (e) => {
-  if(!swiping) return;
+  if(!swiping || !swipeToggle.checked) return;
   const endX = e.changedTouches[0].clientX;
   const diff = endX - startX;
 
@@ -98,9 +101,18 @@ topBar.addEventListener("click", (e) => e.stopPropagation());
 
 // ==================== تنظیمات دکمه ⚙️ ====================
 settingsBtn.addEventListener("click", () => {
-  alert("پنل تنظیمات اینجا باز می‌شود (بعداً کامل می‌شود)");
-  topBar.classList.remove("visible");
-  topBarVisible = false;
+  settingsPanel.classList.toggle("hidden");
+});
+
+// بستن پنل بعد از هر تغییر
+autoPlayToggle.addEventListener("change", () => {
+  autoPlay = autoPlayToggle.checked;
+  if(autoPlay) startAutoPlay(); else stopAutoPlay();
+  settingsPanel.classList.add("hidden");
+});
+
+swipeToggle.addEventListener("change", () => {
+  settingsPanel.classList.add("hidden");
 });
 
 // ==================== انتخاب دفتر ====================
