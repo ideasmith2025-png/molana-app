@@ -1,0 +1,86 @@
+/* بدنه اصلی */
+body {
+    font-family: "Tahoma", sans-serif;
+    background-color: #fdf6e3; /* تم کلاسیک پیش‌فرض */
+    margin: 0;
+    padding: 0;
+}
+
+/* نوار بالا */
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #eee;
+    align-items: center;
+}
+
+/* کانتینر کارت‌ها */
+#card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* کارت‌ها */
+.card {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* متن بیت اصلی */
+.card-text {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* متن توضیح بیت */
+.card-meaning {
+    font-size: 16px;
+    color: #555;
+}
+
+/* پنل تنظیمات */
+#settings-panel {
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 100;
+}
+
+/* تم شب */
+body[data-theme="dark"] {
+    background-color: #1e1e2f;
+    color: #fdf6e3;
+}
+body[data-theme="dark"] .card {
+    background-color: #2c2c3e;
+}
+body[data-theme="dark"] .card-meaning {
+    color: #ccc;
+}
+
+/* تم طبیعت */
+body[data-theme="nature"] {
+    background-color: #eaf4f1;
+    color: #2b2b2b;
+}
+body[data-theme="nature"] .card {
+    background-color: #ffffff;
+}
+body[data-theme="nature"] .card-meaning {
+    color: #4a6a5c;
+}
