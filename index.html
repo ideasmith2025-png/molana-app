@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مثنوی مولانا</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دفتر بیت‌ها</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Vazirmatn, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #0f1115;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding: 12px;
+      gap: 12px;
+    }
+
+    /* کادر بیت */
+    .bit-box {
+      background: #1c1f26;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .bit-number {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .bit-text {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    /* کادر توضیحات */
+    .desc-box {
+      background: #f4f4f4;
+      color: #111;
+      border-radius: 18px;
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      font-size: 16px;
+      line-height: 2;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
 
-  <!-- نوار بالا (مخفی‌شونده در آینده) -->
-  <header id="top-bar">
-    <select id="select-dafar">
-      <option value="1">دفتر اول</option>
-      <option value="2">دفتر دوم</option>
-      <option value="3">دفتر سوم</option>
-      <option value="4">دفتر چهارم</option>
-      <option value="5">دفتر پنجم</option>
-      <option value="6">دفتر ششم</option>
-    </select>
-
-    <input id="search" type="text" placeholder="جستجو در ابیات..." />
-
-    <button id="settings-btn">⚙️</button>
-  </header>
-
-  <!-- ناحیه مطالعه -->
-  <main id="reader-area">
-    <div id="card-container">
-      <!-- کارت‌ها اینجا ساخته می‌شوند -->
-    </div>
-  </main>
-
-  <!-- لایه تار پس‌زمینه (برای بستن تنظیمات با لمس) -->
-  <div id="overlay"></div>
-
-  <!-- پنل تنظیمات (مدرن) -->
-  <aside id="settings-panel">
-    <h3>تنظیمات مطالعه</h3>
-
-    <div class="setting-item">
-      <span>پخش خودکار</span>
-      <input type="checkbox" id="auto-play" />
+    <!-- کادر بیت -->
+    <div class="bit-box">
+      <div class="bit-number">بیت ۱</div>
+      <div class="bit-text">
+        به نام خداوند جان و خرد  
+        کزین برتر اندیشه برنگذرد
+      </div>
     </div>
 
-    <div class="setting-item">
-      <span>مکث بین ابیات (ثانیه)</span>
-      <input type="number" id="pause-time" value="5" min="1" max="30" />
+    <!-- کادر توضیحات -->
+    <div class="desc-box">
+      این بخش مخصوص توضیحات بیت است.  
+      هر مقدار متن که بخواهی می‌تواند اینجا قرار بگیرد و
+      تا انتهای صفحه ادامه داشته باشد بدون اینکه به بیت بالا
+      آسیبی بزند.
     </div>
 
-    <div class="setting-item">
-      <span>حرکت با کشیدن</span>
-      <input type="checkbox" id="swipe" />
-    </div>
-
-    <div class="setting-item">
-      <span>تم مطالعه</span>
-      <select id="theme-select">
-        <option value="classic">کلاسیک</option>
-        <option value="dark">شب</option>
-        <option value="nature">طبیعت</option>
-      </select>
-    </div>
-  </aside>
-
-  <script src="app.js"></script>
+  </div>
 </body>
 </html>
