@@ -1,39 +1,68 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مثنوی مولانا</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مثنوی مولانا</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<div id="header">
+  <!-- نوار بالا (مخفی‌شونده در آینده) -->
+  <header id="top-bar">
     <select id="select-dafar">
-        <option value="daf1">دفتر اول</option>
+      <option value="1">دفتر اول</option>
+      <option value="2">دفتر دوم</option>
+      <option value="3">دفتر سوم</option>
+      <option value="4">دفتر چهارم</option>
+      <option value="5">دفتر پنجم</option>
+      <option value="6">دفتر ششم</option>
     </select>
-    <input type="text" id="search" placeholder="جستجو...">
+
+    <input id="search" type="text" placeholder="جستجو در ابیات..." />
+
     <button id="settings-btn">⚙️</button>
-</div>
+  </header>
 
-<div id="card-container">
-    <!-- کارت‌ها توسط JS ساخته می‌شوند -->
-</div>
+  <!-- ناحیه مطالعه -->
+  <main id="reader-area">
+    <div id="card-container">
+      <!-- کارت‌ها اینجا ساخته می‌شوند -->
+    </div>
+  </main>
 
-<div id="settings-panel">
-    <h3>تنظیمات</h3>
-    <label><input type="checkbox" id="auto-play"> پخش خودکار</label><br>
-    <label>زمان مکث (ثانیه): <input type="number" id="pause-time" value="5" min="1" max="30"></label><br>
-    <label><input type="checkbox" id="swipe"> حرکت با کشیدن</label><br>
-    <label>تم:
-        <select id="theme-select">
-            <option value="classic">کلاسیک</option>
-            <option value="dark">شب</option>
-            <option value="nature">طبیعت</option>
-        </select>
-    </label>
-</div>
+  <!-- لایه تار پس‌زمینه (برای بستن تنظیمات با لمس) -->
+  <div id="overlay"></div>
 
-<script src="app.js"></script>
+  <!-- پنل تنظیمات (مدرن) -->
+  <aside id="settings-panel">
+    <h3>تنظیمات مطالعه</h3>
+
+    <div class="setting-item">
+      <span>پخش خودکار</span>
+      <input type="checkbox" id="auto-play" />
+    </div>
+
+    <div class="setting-item">
+      <span>مکث بین ابیات (ثانیه)</span>
+      <input type="number" id="pause-time" value="5" min="1" max="30" />
+    </div>
+
+    <div class="setting-item">
+      <span>حرکت با کشیدن</span>
+      <input type="checkbox" id="swipe" />
+    </div>
+
+    <div class="setting-item">
+      <span>تم مطالعه</span>
+      <select id="theme-select">
+        <option value="classic">کلاسیک</option>
+        <option value="dark">شب</option>
+        <option value="nature">طبیعت</option>
+      </select>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
 </body>
 </html>
