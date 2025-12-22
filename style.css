@@ -1,40 +1,99 @@
-/* ===== Reset & Base ===== */
+/* ================== Reset & Base ================== */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Vazirmatn, sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f6f6f6;
-  color: #222;
+  background: #0f1115;
+  color: #fff;
   direction: rtl;
+  height: 100vh;
 }
 
-/* ===== Top Bar ===== */
+/* ================== Container ================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 12px;
+  gap: 12px;
+}
+
+/* ================== Bit Box ================== */
+.bit-box {
+  background: #1c1f26;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bit-number {
+  font-size: 16px;
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.bit-text {
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+/* ================== Description Box ================== */
+.desc-box {
+  background: #f4f4f4;
+  color: #111;
+  border-radius: 18px;
+  padding: 20px;
+  height: 65%;
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 2;
+}
+
+/* ================== Top Bar ================== */
 #top-bar {
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
+  right: 0;
   height: 56px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
   padding: 0 12px;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #ddd;
-  z-index: 20;
+  background: rgba(28, 31, 38, 0.95);
+  border-bottom: 1px solid #333;
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+#top-bar.visible {
+  transform: translateY(0);
 }
 
 #top-bar select,
 #top-bar input {
   height: 36px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #555;
   padding: 0 10px;
   font-size: 14px;
+  background: #1c1f26;
+  color: #fff;
+}
+
+#top-bar input::placeholder {
+  color: #aaa;
 }
 
 #settings-btn {
@@ -42,132 +101,13 @@ body {
   width: 36px;
   border-radius: 50%;
   border: none;
-  background: #222;
+  background: #444;
   color: #fff;
   font-size: 16px;
+  cursor: pointer;
 }
 
-/* ===== Reader Area ===== */
-#reader-area {
-  padding-top: 70px;
-  padding-bottom: 40px;
-}
-
-#card-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
-/* ===== Card ===== */
-.card {
-  width: 100%;
-  max-width: 640px;
-  background: #fff;
-  border-radius: 20px;
-  padding: 28px 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-/* بیت */
-.card-text {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.8;
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-/* توضیح */
-.card-meaning {
-  background: #f1f1f1;
-  border-radius: 16px;
-  padding: 20px;
-  font-size: 16px;
-  line-height: 1.9;
-  color: #444;
-}
-
-/* ===== Overlay ===== */
-#overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 30;
-}
-
-#overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ===== Settings Panel ===== */
-#settings-panel {
-  position: fixed;
-  bottom: -100%;
-  right: 0;
-  left: 0;
-  background: #fff;
-  border-radius: 24px 24px 0 0;
-  padding: 24px;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
-  transition: bottom 0.35s ease;
-  z-index: 40;
-}
-
-#settings-panel.active {
-  bottom: 0;
-}
-
-#settings-panel h3 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 18px;
-}
-
-/* ===== Setting Item ===== */
-.setting-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 15px;
-}
-
-.setting-item:last-child {
-  border-bottom: none;
-}
-
-.setting-item input,
-.setting-item select {
-  font-size: 14px;
-}
-
-/* ===== Themes ===== */
-body[data-theme="dark"] {
-  background: #121212;
-  color: #eee;
-}
-
-body[data-theme="dark"] .card {
-  background: #1e1e1e;
-}
-
-body[data-theme="dark"] .card-meaning {
-  background: #2a2a2a;
-  color: #ccc;
-}
-
-body[data-theme="nature"] {
-  background: #eaf4ef;
-}
-
-body[data-theme="nature"] .card-meaning {
-  background: #dfeee7;
+/* ================== Hidden Class ================== */
+.hidden {
+  display: none;
 }
