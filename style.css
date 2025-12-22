@@ -1,12 +1,10 @@
-/* بدنه اصلی */
 body {
     font-family: "Tahoma", sans-serif;
-    background-color: #fdf6e3; /* تم کلاسیک پیش‌فرض */
+    background-color: #fdf6e3;
     margin: 0;
     padding: 0;
 }
 
-/* نوار بالا */
 #header {
     display: flex;
     justify-content: space-between;
@@ -15,7 +13,6 @@ body {
     align-items: center;
 }
 
-/* کانتینر کارت‌ها */
 #card-container {
     display: flex;
     flex-direction: column;
@@ -23,7 +20,6 @@ body {
     padding: 20px;
 }
 
-/* کارت‌ها */
 .card {
     width: 90%;
     max-width: 600px;
@@ -35,20 +31,17 @@ body {
     transition: transform 0.3s, opacity 0.3s;
 }
 
-/* متن بیت اصلی */
 .card-text {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-/* متن توضیح بیت */
 .card-meaning {
     font-size: 16px;
     color: #555;
 }
 
-/* پنل تنظیمات */
 #settings-panel {
     position: fixed;
     top: 50px;
