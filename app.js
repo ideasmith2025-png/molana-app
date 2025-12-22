@@ -1,5 +1,16 @@
 // ====== متغیرهای اصلی ======
-let cards = [];
+let cards = [
+  {"number":1,"text":"بیت شماره یک","meaning":"توضیح کوتاه بیت یک"},
+  {"number":2,"text":"بیت شماره دو","meaning":"توضیح کوتاه بیت دو"},
+  {"number":3,"text":"بیت شماره سه","meaning":"توضیح کوتاه بیت سه"},
+  {"number":4,"text":"بیت شماره چهار","meaning":"توضیح کوتاه بیت چهار"},
+  {"number":5,"text":"بیت شماره پنج","meaning":"توضیح کوتاه بیت پنج"},
+  {"number":6,"text":"بیت شماره شش","meaning":"توضیح کوتاه بیت شش"},
+  {"number":7,"text":"بیت شماره هفت","meaning":"توضیح کوتاه بیت هفت"},
+  {"number":8,"text":"بیت شماره هشت","meaning":"توضیح کوتاه بیت هشت"},
+  {"number":9,"text":"بیت شماره نه","meaning":"توضیح کوتاه بیت نه"},
+  {"number":10,"text":"بیت شماره ده","meaning":"توضیح کوتاه بیت ده"}
+];
 let currentIndex = 0;
 let autoPlay = false;
 let pauseTime = 5000;
@@ -15,19 +26,6 @@ const autoPlayCheckbox = document.getElementById('auto-play');
 const pauseTimeInput = document.getElementById('pause-time');
 const swipeCheckbox = document.getElementById('swipe');
 const themeSelect = document.getElementById('theme-select');
-
-// ====== بارگذاری دفتر ======
-function loadDaf(file) {
-    fetch('data/' + file)
-        .then(res => res.json())
-        .then(data => {
-            cards = data;
-            currentIndex = 0;
-            displayCards(cards);
-            showCard(0); // نمایش کارت اول هنگام بارگذاری
-            resetAutoPlay();
-        });
-}
 
 // ====== نمایش کارت‌ها ======
 function displayCards(cardsArray) {
@@ -74,7 +72,8 @@ function resetAutoPlay() {
 
 // ====== انتخاب دفتر ======
 selectDafar.addEventListener('change', () => {
-    loadDaf(selectDafar.value);
+    // فعلاً فقط یک دفتر داریم، می‌توان بعداً اضافه کرد
+    showCard(0);
 });
 
 // ====== جستجو ======
@@ -137,4 +136,5 @@ cardContainer.addEventListener('touchmove', (e) => {
 cardContainer.addEventListener('touchend', () => { isSwiping = false; });
 
 // ====== بارگذاری اولیه ======
-loadDaf(selectDafar.value);
+displayCards(cards);
+showCard(0);
