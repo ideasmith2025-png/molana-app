@@ -1,42 +1,73 @@
-// ==================== Variables ====================
-const topBar = document.getElementById("top-bar");
-const readerArea = document.getElementById("reader-area");
-const settingsBtn = document.getElementById("settings-btn");
+// ==================== Data ====================
+let cards = [
+  { dafar: 1, number: 1, text: "به نام خداوند جان و خرد\nکزین برتر اندیشه برنگذرد", meaning: "توضیح نمونه برای بیت یک" },
+  { dafar: 1, number: 2, text: "هر که او ز روزگار بی‌خبر است\nخاموش و بیدار و پایبند سر است", meaning: "توضیح نمونه برای بیت دو" },
+  { dafar: 1, number: 3, text: "عقل گوید که جان را پاس دار\nتا در هر کار کنی راه و دار", meaning: "توضیح نمونه برای بیت سه" }
+];
 
-// وضعیت نوار بالا
-let topBarVisible = false;
+let currentIndex = 0;
+let autoPlay = false;
+let pauseTime = 5000;
+let timer = null;
 
-// ==================== Functions ====================
-function showTopBar() {
-  topBar.classList.add("visible");
-  topBarVisible = true;
+// ==================== Elements ====================
+const cardBox = document.querySelector(".bit-box");
+const bitNumber = document.querySelector(".bit-number");
+const bitText = document.querySelector(".bit-text");
+const descBox = document.querySelector(".desc-box");
+
+// ==================== Render ====================
+function renderCard(index) {
+  const card = cards[index];
+  bitNumber.textContent = `دفتر ${card.dafar} – بیت شماره ${card.number}`;
+  bitText.textContent = card.text;
+  descBox.textContent = card.meaning;
 }
 
-function hideTopBar() {
-  topBar.classList.remove("visible");
-  topBarVisible = false;
+// ==================== Navigation ====================
+function nextCard() {
+  currentIndex = (currentIndex + 1) % cards.length;
+  renderCard(currentIndex);
 }
 
-function toggleTopBar() {
-  if(topBarVisible) hideTopBar();
-  else showTopBar();
+function prevCard() {
+  currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+  renderCard(currentIndex);
 }
 
-// ==================== Event Listeners ====================
+// ==================== Auto-play ====================
+function startAutoPlay() {
+  stopAutoPlay();
+  if(!autoPlay) return;
+  timer = setInterval(nextCard, pauseTime);
+}
 
-// لمس هر جای صفحه برای نمایش نوار بالا
-readerArea.addEventListener("click", (e) => {
-  e.stopPropagation();
-  toggleTopBar();
+function stopAutoPlay() {
+  if(timer) clearInterval(timer);
+}
+
+// ==================== Swipe ====================
+let startX = 0;
+let swiping = false;
+
+cardBox.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+  swiping = true;
 });
 
-// جلوگیری از بسته شدن وقتی روی نوار بالا لمس می‌شود
-topBar.addEventListener("click", (e) => {
-  e.stopPropagation();
+cardBox.addEventListener("touchend", (e) => {
+  if(!swiping) return;
+  const endX = e.changedTouches[0].clientX;
+  const diff = endX - startX;
+
+  // جهت معکوس: چپ → راست = بعدی
+  if(diff > 50) {
+    nextCard();
+  } else if(diff < -50) {
+    prevCard();
+  }
+  swiping = false;
 });
 
-// دکمه تنظیمات ⚙️ (مثال: می‌تواند بعداً پنل تنظیمات را باز کند)
-settingsBtn.addEventListener("click", () => {
-  alert("پنل تنظیمات اینجا باز می‌شود (بعداً اضافه خواهد شد)");
-  hideTopBar();
-});
+// ==================== Init ====================
+renderCard(currentIndex);
