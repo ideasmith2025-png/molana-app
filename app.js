@@ -24,6 +24,7 @@ function loadDaf(file) {
             cards = data;
             currentIndex = 0;
             displayCards(cards);
+            showCard(0); // نمایش کارت اول هنگام بارگذاری
             resetAutoPlay();
         });
 }
