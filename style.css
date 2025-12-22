@@ -1,113 +1,25 @@
-/* ================== Reset & Base ================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Vazirmatn, sans-serif;
-}
+* { box-sizing: border-box; margin:0; padding:0; font-family: Vazirmatn, sans-serif; }
+body { background: #0f1115; color:#fff; direction: rtl; height: 100vh; overflow: hidden; }
 
-body {
-  background: #0f1115;
-  color: #fff;
-  direction: rtl;
-  height: 100vh;
-}
+#reader-area { height: 100vh; }
 
-/* ================== Container ================== */
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 12px;
-  gap: 12px;
-}
+.container { display: flex; flex-direction: column; height: 100%; }
 
-/* ================== Bit Box ================== */
-.bit-box {
-  background: #1c1f26;
-  border-radius: 16px;
-  padding: 20px;
-  text-align: center;
-  height: 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+.bit-box { background: #1c1f26; border-radius: 16px; padding: 20px; text-align: center; height: 35%; display: flex; flex-direction: column; justify-content: center; }
+.bit-number { font-size: 16px; opacity: 0.8; margin-bottom: 8px; }
+.bit-text { font-size: 22px; line-height: 1.8; }
 
-.bit-number {
-  font-size: 16px;
-  opacity: 0.8;
-  margin-bottom: 8px;
-}
+.desc-box { background: #f4f4f4; color: #111; border-radius: 18px; padding: 20px; flex: 1; overflow-y: auto; font-size: 16px; line-height: 2; }
 
-.bit-text {
-  font-size: 22px;
-  line-height: 1.8;
-}
+#top-bar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 0 12px; background: rgba(28, 31, 38, 0.95); border-bottom: 1px solid #333; backdrop-filter: blur(6px); z-index: 100; transform: translateY(-100%); transition: transform 0.3s ease; }
+#top-bar.visible { transform: translateY(0); }
 
-/* ================== Description Box ================== */
-.desc-box {
-  background: #f4f4f4;
-  color: #111;
-  border-radius: 18px;
-  padding: 20px;
-  height: 65%;
-  overflow-y: auto;
-  font-size: 16px;
-  line-height: 2;
-}
+#top-bar select, #top-bar input { height: 36px; border-radius: 10px; border: 1px solid #555; padding: 0 10px; font-size: 14px; background: #1c1f26; color: #fff; }
+#top-bar input::placeholder { color: #aaa; }
 
-/* ================== Top Bar ================== */
-#top-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 0 12px;
-  background: rgba(28, 31, 38, 0.95);
-  border-bottom: 1px solid #333;
-  backdrop-filter: blur(6px);
-  z-index: 100;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-}
+#settings-btn { height: 36px; width: 36px; border-radius: 50%; border: none; background: #444; color: #fff; font-size: 16px; cursor: pointer; }
 
-#top-bar.visible {
-  transform: translateY(0);
-}
+#settings-panel { position: fixed; top: 60px; right: 12px; background: #1c1f26; padding: 16px; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; z-index: 101; }
+#settings-panel.hidden { display: none; }
 
-#top-bar select,
-#top-bar input {
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid #555;
-  padding: 0 10px;
-  font-size: 14px;
-  background: #1c1f26;
-  color: #fff;
-}
-
-#top-bar input::placeholder {
-  color: #aaa;
-}
-
-#settings-btn {
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  border: none;
-  background: #444;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* ================== Hidden Class ================== */
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
