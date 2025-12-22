@@ -1,4 +1,3 @@
-// ====== متغیرهای اصلی ======
 let cards = [
   {"number":1,"text":"بیت شماره یک","meaning":"توضیح کوتاه بیت یک"},
   {"number":2,"text":"بیت شماره دو","meaning":"توضیح کوتاه بیت دو"},
@@ -11,12 +10,12 @@ let cards = [
   {"number":9,"text":"بیت شماره نه","meaning":"توضیح کوتاه بیت نه"},
   {"number":10,"text":"بیت شماره ده","meaning":"توضیح کوتاه بیت ده"}
 ];
+
 let currentIndex = 0;
 let autoPlay = false;
 let pauseTime = 5000;
 let timer = null;
 
-// ====== المان‌ها ======
 const cardContainer = document.getElementById('card-container');
 const selectDafar = document.getElementById('select-dafar');
 const searchInput = document.getElementById('search');
@@ -27,7 +26,6 @@ const pauseTimeInput = document.getElementById('pause-time');
 const swipeCheckbox = document.getElementById('swipe');
 const themeSelect = document.getElementById('theme-select');
 
-// ====== نمایش کارت‌ها ======
 function displayCards(cardsArray) {
     cardContainer.innerHTML = '';
     cardsArray.forEach((card, index) => {
@@ -42,7 +40,6 @@ function displayCards(cardsArray) {
     });
 }
 
-// ====== حرکت بین کارت‌ها ======
 function showCard(index) {
     const allCards = document.querySelectorAll('.card');
     allCards.forEach((c, i) => {
@@ -50,7 +47,6 @@ function showCard(index) {
     });
 }
 
-// ====== پخش خودکار ======
 function startAutoPlay() {
     stopAutoPlay();
     if (autoPlay && cards.length > 0) {
@@ -70,13 +66,10 @@ function resetAutoPlay() {
     startAutoPlay();
 }
 
-// ====== انتخاب دفتر ======
 selectDafar.addEventListener('change', () => {
-    // فعلاً فقط یک دفتر داریم، می‌توان بعداً اضافه کرد
     showCard(0);
 });
 
-// ====== جستجو ======
 searchInput.addEventListener('input', () => {
     const query = searchInput.value.toLowerCase();
     const filtered = cards.filter(c => 
@@ -87,7 +80,6 @@ searchInput.addEventListener('input', () => {
     showCard(currentIndex);
 });
 
-// ====== تنظیمات ======
 settingsBtn.addEventListener('click', () => {
     settingsPanel.style.display = (settingsPanel.style.display === 'block') ? 'none' : 'block';
 });
@@ -109,7 +101,6 @@ themeSelect.addEventListener('change', () => {
     document.body.dataset.theme = themeSelect.value;
 });
 
-// ====== Swipe ساده ======
 let startX = 0;
 let isSwiping = false;
 
@@ -122,11 +113,11 @@ cardContainer.addEventListener('touchstart', (e) => {
 cardContainer.addEventListener('touchmove', (e) => {
     if (!isSwiping) return;
     const deltaX = e.touches[0].clientX - startX;
-    if (deltaX > 50) { // راست → بیت قبلی
+    if (deltaX > 50) {
         currentIndex = (currentIndex - 1 + cards.length) % cards.length;
         showCard(currentIndex);
         isSwiping = false;
-    } else if (deltaX < -50) { // چپ → بیت بعد
+    } else if (deltaX < -50) {
         currentIndex = (currentIndex + 1) % cards.length;
         showCard(currentIndex);
         isSwiping = false;
@@ -135,6 +126,5 @@ cardContainer.addEventListener('touchmove', (e) => {
 
 cardContainer.addEventListener('touchend', () => { isSwiping = false; });
 
-// ====== بارگذاری اولیه ======
 displayCards(cards);
 showCard(0);
