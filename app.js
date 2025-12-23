@@ -27,8 +27,8 @@ const explainBox = document.getElementById("explain-box");
 
 function renderVerse() {
   const v = verses[currentIndex];
-  verseMeta.textContent = `دفتر ${v.daftar} · بیت ${v.number}`;
   verseText.innerText = v.text;
+  verseMeta.textContent = `دفتر ${v.daftar} · بیت ${v.number}`; // حالا زیر بیت
   explainBox.innerText = v.explain;
 }
 
@@ -40,7 +40,7 @@ renderVerse();
 // ==========================
 let touchStartX = 0;
 let touchEndX = 0;
-const threshold = 50; // حساسیت سوییپ
+const threshold = 50;
 
 const swipeArea = document.getElementById("app"); // فقط روی #app
 
@@ -56,13 +56,11 @@ swipeArea.addEventListener('touchend', e => {
 function handleGesture() {
   const diff = touchStartX - touchEndX;
   if (diff > threshold) {
-    // سوییپ به چپ → بیت بعدی
     if (currentIndex < verses.length - 1) {
       currentIndex++;
       renderVerse();
     }
   } else if (diff < -threshold) {
-    // سوییپ به راست → بیت قبلی
     if (currentIndex > 0) {
       currentIndex--;
       renderVerse();
