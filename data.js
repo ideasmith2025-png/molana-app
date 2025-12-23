@@ -1,6 +1,6 @@
 const verses = [
   {type:"intro",daftar:1,text:"مقدمه دفتر اول"},
-  {type:"section",daftar:1,text:"بخش ۱",explain:"توضیح بخش"},
+  {type:"section",daftar:1,text:"بخش ۱",explain:"توضیح بخش ۱"},
   {type:"verse",daftar:1,number:1,text:"بیت نمونه ۱",explain:"توضیح بیت نمونه ۱"},
   {type:"verse",daftar:1,number:2,text:"بیت نمونه ۲",explain:"توضیح بیت نمونه ۲"},
   {type:"intro",daftar:2,text:"مقدمه دفتر دوم"},
