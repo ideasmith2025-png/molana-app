@@ -1,62 +1,32 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>مثنوی مولانا</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- نوار بالا -->
-  <header id="top-bar" class="hidden">
-    <select id="select-dafar">
-      <option value="1">دفتر اول</option>
-      <option value="2">دفتر دوم</option>
-      <option value="3">دفتر سوم</option>
-      <option value="4">دفتر چهارم</option>
-      <option value="5">دفتر پنجم</option>
-      <option value="6">دفتر ششم</option>
-    </select>
+  <div id="app">
 
-    <input id="search" type="text" placeholder="جستجو در ابیات...">
-    <button id="settings-btn">⚙️</button>
-  </header>
-
-  <!-- پنل تنظیمات -->
-  <div id="settings-panel" class="hidden">
-    <label>
-      <input type="checkbox" id="auto-play-toggle">
-      فعال کردن Auto-play
-    </label>
-    <label>
-      <input type="checkbox" id="swipe-toggle" checked>
-      فعال کردن Swipe
-    </label>
-  </div>
-
-  <!-- ناحیه مطالعه -->
-  <main id="reader-area">
-    <div class="container">
-
-      <!-- کادر بیت -->
-      <div class="bit-box">
-        <div class="bit-number">دفتر اول – بیت شماره ۱</div>
-        <div class="bit-text">
-          به نام خداوند جان و خرد  
-          کزین برتر اندیشه برنگذرد
-        </div>
+    <!-- کادر بیت -->
+    <div id="verse-box">
+      <div id="verse-meta">دفتر اول · بیت ۱</div>
+      <div id="verse-text">
+        بشنو از نی چون حکایت می‌کند  
+        از جدایی‌ها شکایت می‌کند
       </div>
-
-      <!-- کادر توضیحات -->
-      <div class="desc-box">
-        این بخش مخصوص توضیحات بیت است.  
-        هر مقدار متن که بخواهی می‌تواند اینجا قرار بگیرد و
-        تا انتهای صفحه ادامه داشته باشد بدون اینکه به بیت بالا آسیبی بزند.
-      </div>
-
     </div>
-  </main>
+
+    <!-- کادر توضیحات -->
+    <div id="explain-box">
+      این فقط یک متن نمونه است برای تست ساختار برنامه.
+      بعداً توضیح و معنی دقیق هر بیت اینجا قرار می‌گیرد.
+    </div>
+
+  </div>
 
   <script src="app.js"></script>
 </body>
