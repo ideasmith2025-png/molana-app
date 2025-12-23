@@ -16,10 +16,12 @@ const explainBox = document.getElementById("explain-box");
 
 const settingsBtn = document.getElementById("settingsBtn");
 const settingsPanel = document.getElementById("settingsPanel");
+const searchInput = document.getElementById("searchInput");
+const daftarButtons = document.querySelectorAll(".daftar-btn");
 
 function renderVerse() {
   if(filteredVerses.length === 0) {
-    verseText.innerText = "هیچ بیتی برای این دفتر یا جستجو یافت نشد.";
+    verseText.innerText = "هیچ بیتی یافت نشد.";
     verseMeta.innerText = "";
     explainBox.innerText = "";
     return;
@@ -51,7 +53,7 @@ swipeArea.addEventListener('touchend', e => {
 });
 
 function handleGesture() {
-  const diff = touchEndX - touchStartX; // جهت اصلاح
+  const diff = touchEndX - touchStartX;
   if (diff > threshold) {
     if (currentIndex < filteredVerses.length - 1) currentIndex++;
   } else if (diff < -threshold) {
@@ -63,7 +65,7 @@ function handleGesture() {
 // ==========================
 // تنظیمات باز/بسته شدن
 // ==========================
-settingsBtn.addEventListener("click", (e) => {
+settingsBtn.addEventListener("click", e => {
   e.stopPropagation();
   settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
 });
@@ -72,34 +74,31 @@ document.body.addEventListener("click", () => {
   settingsPanel.style.display = "none";
 });
 
-settingsPanel.addEventListener("click", (e) => {
+settingsPanel.addEventListener("click", e => {
   e.stopPropagation();
 });
 
 // ==========================
-// اعمال انتخاب دفتر
+// انتخاب دفتر
 // ==========================
-document.querySelectorAll(".setting-item").forEach(item => {
-  item.addEventListener("click", () => {
-    const action = item.getAttribute("data-action");
-    if(action === "daftar") {
-      const number = prompt("شماره دفتر را وارد کنید (1 تا 6):");
-      const n = parseInt(number);
-      if(!isNaN(n) && n>=1 && n<=6) {
-        filteredVerses = verses.filter(v => v.daftar === n);
-        currentIndex = 0;
-        renderVerse();
-      }
-    } else if(action === "search") {
-      const term = prompt("متن یا شماره بیت را وارد کنید:");
-      if(term) {
-        const t = term.trim();
-        filteredVerses = verses.filter(v => v.text.includes(t) || v.number == t);
-        currentIndex = 0;
-        renderVerse();
-      }
-    }
-    // بعد از انتخاب خودکار پنل بسته شود
+daftarButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const n = parseInt(btn.getAttribute("data-daftar"));
+    filteredVerses = verses.filter(v => v.daftar === n);
+    currentIndex = 0;
+    renderVerse();
     settingsPanel.style.display = "none";
   });
+});
+
+// ==========================
+// جستجو
+// ==========================
+searchInput.addEventListener("input", () => {
+  const term = searchInput.value.trim();
+  filteredVerses = verses.filter(v => {
+    return v.text.includes(term) || v.number.toString() === term;
+  });
+  currentIndex = 0;
+  renderVerse();
 });
