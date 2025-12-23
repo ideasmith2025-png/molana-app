@@ -1,10 +1,38 @@
-const verses = [
-  {type:"intro",daftar:1,text:"مقدمه دفتر اول"},
-  {type:"section",daftar:1,text:"بخش ۱",explain:"توضیح بخش ۱"},
-  {type:"verse",daftar:1,number:1,text:"بیت نمونه ۱",explain:"توضیح بیت نمونه ۱"},
-  {type:"verse",daftar:1,number:2,text:"بیت نمونه ۲",explain:"توضیح بیت نمونه ۲"},
-  {type:"intro",daftar:2,text:"مقدمه دفتر دوم"},
-  {type:"section",daftar:2,text:"بخش ۱",explain:"توضیح بخش"},
-  {type:"verse",daftar:2,number:1,text:"بیت نمونه ۱ دفتر دوم",explain:"توضیح بیت"},
-  {type:"verse",daftar:2,number:2,text:"بیت نمونه ۲ دفتر دوم",explain:"توضیح بیت"}
+const data = [
+  {
+    type: "intro",
+    daftar: 1,
+    text: "مقدمه دفتر اول"
+  },
+  {
+    type: "verse",
+    daftar: 1,
+    verse: "بشنو از نی چون حکایت می‌کند",
+    explain: "توضیح نمونه برای بیت",
+    number: 1
+  },
+  {
+    type: "section",
+    text: "بخش اول"
+  },
+  {
+    type: "verse",
+    daftar: 1,
+    verse: "کز جدایی‌ها شکایت می‌کند",
+    explain: "توضیح نمونه دوم",
+    number: 2
+  },
+
+  {
+    type: "intro",
+    daftar: 2,
+    text: "مقدمه دفتر دوم"
+  },
+  {
+    type: "verse",
+    daftar: 2,
+    verse: "این بیت نمونه دفتر دوم است",
+    explain: "توضیح موقت",
+    number: 1
+  }
 ];
