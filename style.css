@@ -9,7 +9,7 @@ body {
   background: #0f172a;
   color: #e5e7eb;
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* صفحه فیکس بدون اسکرول */
 }
 
 #app {
@@ -28,6 +28,7 @@ body {
   background: #020617;
   font-size: 14px;
   color: #94a3b8;
+  z-index: 10;
 }
 
 #settingsToggle {
@@ -67,7 +68,7 @@ body {
 
 /* ===== تنظیمات ===== */
 #settingsPanel {
-  position: absolute;
+  position: fixed; /* فیکس بالا سمت راست */
   top: 60px;
   right: 10px;
   width: 220px;
@@ -78,6 +79,7 @@ body {
   flex-direction: column;
   z-index: 1000;
   color: #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
 #settingsPanel h3 {
