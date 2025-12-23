@@ -25,10 +25,13 @@ const verseMeta = document.getElementById("verse-meta");
 const verseText = document.getElementById("verse-text");
 const explainBox = document.getElementById("explain-box");
 
+const settingsBtn = document.getElementById("settingsBtn");
+const settingsPanel = document.getElementById("settingsPanel");
+
 function renderVerse() {
   const v = verses[currentIndex];
   verseText.innerText = v.text;
-  verseMeta.textContent = `دفتر ${v.daftar} · بیت ${v.number}`; // حالا زیر بیت
+  verseMeta.textContent = `دفتر ${v.daftar} · بیت ${v.number}`;
   explainBox.innerText = v.explain;
 }
 
@@ -36,13 +39,12 @@ function renderVerse() {
 renderVerse();
 
 // ==========================
-// سوییپ کل صفحه اصلاح شده
+// سوییپ کل صفحه
 // ==========================
 let touchStartX = 0;
 let touchEndX = 0;
 const threshold = 50;
-
-const swipeArea = document.getElementById("app"); // فقط روی #app
+const swipeArea = document.getElementById("app");
 
 swipeArea.addEventListener('touchstart', e => {
   touchStartX = e.changedTouches[0].screenX;
@@ -56,14 +58,34 @@ swipeArea.addEventListener('touchend', e => {
 function handleGesture() {
   const diff = touchStartX - touchEndX;
   if (diff > threshold) {
-    if (currentIndex < verses.length - 1) {
-      currentIndex++;
-      renderVerse();
-    }
+    if (currentIndex < verses.length - 1) currentIndex++;
   } else if (diff < -threshold) {
-    if (currentIndex > 0) {
-      currentIndex--;
-      renderVerse();
-    }
+    if (currentIndex > 0) currentIndex--;
   }
+  renderVerse();
 }
+
+// ==========================
+// تنظیمات باز/بسته شدن
+// ==========================
+settingsBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  settingsPanel.style.display = settingsPanel.style.display === "block" ? "none" : "block";
+});
+
+// لمس صفحه → تنظیمات بسته شود
+document.body.addEventListener("click", () => {
+  settingsPanel.style.display = "none";
+});
+
+// لمس خود پنل → بسته نشود
+settingsPanel.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+// بعد از هر انتخاب → بسته شود
+document.querySelectorAll(".setting-item").forEach(item => {
+  item.addEventListener("click", () => {
+    settingsPanel.style.display = "none";
+  });
+});
