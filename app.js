@@ -1,39 +1,63 @@
-let currentIndex = 0;
+let index = 0;
 
-const card = document.getElementById("card");
-const verseMeta = document.getElementById("verse-meta");
-const verseText = document.getElementById("verse-text");
-const explainBox = document.getElementById("explain-box");
+const verseBox = document.getElementById("verseText");
+const explainBox = document.getElementById("explainText");
+const infoBox = document.getElementById("infoText");
 
-function renderVerse() {
-  const v = verses[currentIndex];
-  if (!v) return;
+function render() {
+  const item = verses[index];
 
-  card.classList.remove("verse", "intro", "section");
+  // ریست
+  verseBox.innerText = "";
+  explainBox.innerText = "";
+  infoBox.innerText = "";
 
-  if (v.type === "intro") {
-    card.classList.add("intro");
-    verseMeta.innerText = `دفتر ${v.daftar} · مقدمه`;
+  if (item.type === "intro") {
+    verseBox.innerText = item.text;
+    infoBox.innerText = `دفتر ${item.daftar} – مقدمه`;
   }
 
-  if (v.type === "section") {
-    card.classList.add("section");
-    verseMeta.innerText = `دفتر ${v.daftar}`;
+  if (item.type === "section") {
+    verseBox.innerText = item.text;
+    explainBox.innerText = item.explain || "";
+    infoBox.innerText = `دفتر ${item.daftar} – بخش`;
   }
 
-  if (v.type === "verse") {
-    card.classList.add("verse");
-    verseMeta.innerText = `دفتر ${v.daftar} · بیت ${v.number}`;
+  if (item.type === "verse") {
+    verseBox.innerText = item.text;
+    explainBox.innerText = item.explain || "";
+    infoBox.innerText = `دفتر ${item.daftar} · بیت ${item.number}`;
   }
-
-  verseText.innerText = v.text;
-  explainBox.innerText = v.explain || "";
 }
 
-document.addEventListener("click", () => {
-  currentIndex++;
-  if (currentIndex >= verses.length) currentIndex = 0;
-  renderVerse();
+function next() {
+  if (index < verses.length - 1) {
+    index++;
+    render();
+  }
+}
+
+function prev() {
+  if (index > 0) {
+    index--;
+    render();
+  }
+}
+
+// سوییپ روی کل صفحه
+let startX = 0;
+
+document.body.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
 });
 
-renderVerse();
+document.body.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+  let diff = endX - startX;
+
+  if (diff < -50) next();     // کشیدن به چپ → بیت بعدی
+  if (diff > 50) prev();      // کشیدن به راست → قبلی
+});
+
+// شروع
+render();
