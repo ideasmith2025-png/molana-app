@@ -36,14 +36,25 @@ function renderVerse() {
 renderVerse();
 
 // ==========================
-// سوییپ کل صفحه (موبایل)
+// سوییپ کل صفحه اصلاح شده
 // ==========================
 let touchStartX = 0;
 let touchEndX = 0;
+const threshold = 50; // حساسیت سوییپ
+
+const swipeArea = document.getElementById("app"); // فقط روی #app
+
+swipeArea.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+swipeArea.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+});
 
 function handleGesture() {
   const diff = touchStartX - touchEndX;
-  const threshold = 50; // حساسیت سوییپ
   if (diff > threshold) {
     // سوییپ به چپ → بیت بعدی
     if (currentIndex < verses.length - 1) {
@@ -58,13 +69,3 @@ function handleGesture() {
     }
   }
 }
-
-// رو کل صفحه اعمال شود
-document.body.addEventListener('touchstart', e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-document.body.addEventListener('touchend', e => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleGesture();
-});
