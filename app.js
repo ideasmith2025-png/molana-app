@@ -43,7 +43,7 @@ function prev() {
   }
 }
 
-/* ===== سوییپ فقط با کشیدن واقعی ===== */
+/* ===== سوییپ نهایی (چپ → راست = بعدی) ===== */
 
 let startX = 0;
 let moved = false;
@@ -53,7 +53,7 @@ document.body.addEventListener("touchstart", e => {
   moved = false;
 });
 
-document.body.addEventListener("touchmove", e => {
+document.body.addEventListener("touchmove", () => {
   moved = true;
 });
 
@@ -65,8 +65,11 @@ document.body.addEventListener("touchend", e => {
 
   if (Math.abs(diff) < 70) return;
 
-  if (diff < 0) next();
-  else prev();
+  if (diff > 0) {
+    next();   // 👈 کشیدن از چپ به راست → بعدی
+  } else {
+    prev();   // 👉 کشیدن از راست به چپ → قبلی
+  }
 });
 
 render();
