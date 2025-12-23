@@ -43,32 +43,37 @@ function prev() {
   }
 }
 
-/* ===== سوییپ نهایی (چپ → راست = بعدی) ===== */
+/* ===== سوییپ دقیق ===== */
+/*
+قانون:
+startX = جای شروع انگشت
+endX   = جای پایان انگشت
 
-let startX = 0;
-let moved = false;
+اگر:
+endX > startX  → حرکت به راست → آیتم بعدی
+endX < startX  → حرکت به چپ  → آیتم قبلی
+*/
+
+let startX = null;
 
 document.body.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
-  moved = false;
-});
-
-document.body.addEventListener("touchmove", () => {
-  moved = true;
 });
 
 document.body.addEventListener("touchend", e => {
-  if (!moved) return;
+  if (startX === null) return;
 
   const endX = e.changedTouches[0].clientX;
   const diff = endX - startX;
 
-  if (Math.abs(diff) < 70) return;
+  startX = null;
+
+  if (Math.abs(diff) < 60) return; // ضربه یا حرکت کم
 
   if (diff > 0) {
-    next();   // 👈 کشیدن از چپ به راست → بعدی
+    next();   // 👈 از چپ به راست → بعدی
   } else {
-    prev();   // 👉 کشیدن از راست به چپ → قبلی
+    prev();   // 👉 از راست به چپ → قبلی
   }
 });
 
