@@ -10,17 +10,16 @@
 <div id="app">
 
   <div id="topBar">
-    <div id="selectDaftar">
-      <select id="daftarSelect">
-        <option value="all">همه دفاتر</option>
-        <option value="1">دفتر اول</option>
-        <option value="2">دفتر دوم</option>
-        <option value="3">دفتر سوم</option>
-        <option value="4">دفتر چهارم</option>
-        <option value="5">دفتر پنجم</option>
-        <option value="6">دفتر ششم</option>
-      </select>
-    </div>
+    <input type="text" id="searchInput" placeholder="جستجو در ابیات...">
+    <select id="daftarSelect">
+      <option value="all">همه دفاتر</option>
+      <option value="1">دفتر اول</option>
+      <option value="2">دفتر دوم</option>
+      <option value="3">دفتر سوم</option>
+      <option value="4">دفتر چهارم</option>
+      <option value="5">دفتر پنجم</option>
+      <option value="6">دفتر ششم</option>
+    </select>
     <div id="settingsToggle">⚙️</div>
   </div>
 
@@ -32,7 +31,15 @@
   <div id="settingsPanel">
     <h3>تنظیمات</h3>
     <label><input type="checkbox" id="autoNext"> رفتن خودکار بعد از چند ثانیه</label>
-    <label><input type="checkbox" id="touchNext"> لمس صفحه برای رفتن به بیت بعد</label>
+    <label><input type="checkbox" id="touchNext"> لمس صفحه برای رفتن بیت بعد</label>
+    <label>تم: 
+      <select id="themeSelect">
+        <option value="dark">تیره</option>
+        <option value="light">روشن</option>
+        <option value="blue">آبی</option>
+        <option value="green">سبز</option>
+      </select>
+    </label>
     <div id="closeSettings">بستن ✖️</div>
   </div>
 
