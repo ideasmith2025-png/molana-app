@@ -1,42 +1,21 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>مثنوی مولانا</title>
+  <meta charset="UTF-8">
+  <title>مثنوی</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div id="app">
-
-    <!-- کادر بیت -->
-    <div id="verse-box">
-      <div id="verse-text"></div>
-      <div id="verse-meta"></div>
-    </div>
-
-    <!-- کادر توضیحات -->
+<div id="app">
+  <div id="card" class="card">
+    <div id="verse-meta"></div>
+    <div id="verse-text"></div>
     <div id="explain-box"></div>
-
   </div>
+</div>
 
-  <!-- چرخ دنده تنظیمات -->
-  <div id="settingsBtn">⚙️</div>
-
-  <!-- پنل تنظیمات -->
-  <div id="settingsPanel">
-    <input type="text" id="searchInput" placeholder="جستجو بیت یا شماره" />
-    <div id="daftarButtons">
-      <button class="daftar-btn" data-daftar="1">دفتر ۱</button>
-      <button class="daftar-btn" data-daftar="2">دفتر ۲</button>
-      <button class="daftar-btn" data-daftar="3">دفتر ۳</button>
-      <button class="daftar-btn" data-daftar="4">دفتر ۴</button>
-      <button class="daftar-btn" data-daftar="5">دفتر ۵</button>
-      <button class="daftar-btn" data-daftar="6">دفتر ۶</button>
-    </div>
-  </div>
-
-  <script src="app.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
