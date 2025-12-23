@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>مثنوی مولانا</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>مثنوی مولانا</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <div id="app">
 
+  <!-- نوار بالا (مخفی) -->
   <div id="topBar">
-    <input type="text" id="searchInput" placeholder="جستجو در ابیات...">
+    <input id="searchInput" type="text" placeholder="جستجو...">
     <select id="daftarSelect">
-      <option value="all">همه دفاتر</option>
-      <option value="1">دفتر اول</option>
-      <option value="2">دفتر دوم</option>
-      <option value="3">دفتر سوم</option>
-      <option value="4">دفتر چهارم</option>
-      <option value="5">دفتر پنجم</option>
-      <option value="6">دفتر ششم</option>
+      <option value="1">دفتر ۱</option>
+      <option value="2">دفتر ۲</option>
+      <option value="3">دفتر ۳</option>
+      <option value="4">دفتر ۴</option>
+      <option value="5">دفتر ۵</option>
+      <option value="6">دفتر ۶</option>
     </select>
-    <div id="settingsToggle">⚙️</div>
+    <button id="settingsBtn">⚙️</button>
   </div>
 
-  <div id="content">
-    <div id="verseBox"><div id="verseText"></div><div id="verseInfo"></div></div>
-    <div id="explainBox"><div id="explainText"></div></div>
-  </div>
-
+  <!-- تنظیمات -->
   <div id="settingsPanel">
-    <h3>تنظیمات</h3>
-    <label><input type="checkbox" id="autoNext"> رفتن خودکار بعد از چند ثانیه</label>
-    <label><input type="checkbox" id="touchNext"> لمس صفحه برای رفتن بیت بعد</label>
-    <label>تم: 
+    <label>
+      <input type="checkbox" id="autoPlayToggle">
+      حرکت خودکار بیت‌ها
+    </label>
+
+    <label>
+      زمان (ثانیه):
+      <input type="number" id="autoPlayTime" value="5" min="2">
+    </label>
+
+    <label>
+      <input type="checkbox" id="tapToggle">
+      رفتن با لمس صفحه
+    </label>
+
+    <label>
+      تم رنگی:
       <select id="themeSelect">
-        <option value="dark">تیره</option>
         <option value="light">روشن</option>
-        <option value="blue">آبی</option>
-        <option value="green">سبز</option>
+        <option value="dark">تیره</option>
+        <option value="sepia">سپیا</option>
       </select>
     </label>
-    <div id="closeSettings">بستن ✖️</div>
+  </div>
+
+  <!-- محتوا -->
+  <div id="content">
+
+    <div id="verseBox">
+      <div id="verseText"></div>
+      <div id="verseInfo"></div>
+    </div>
+
+    <div id="explainBox">
+      <div id="explainText"></div>
+    </div>
+
   </div>
 
 </div>
