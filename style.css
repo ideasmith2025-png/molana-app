@@ -1,115 +1,58 @@
-* {
-  box-sizing: border-box;
+body {
   margin: 0;
-  padding: 0;
-  font-family: "Vazirmatn", system-ui, sans-serif;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
   background: #0f0f0f;
+  font-family: sans-serif;
   color: #f2f2f2;
 }
 
 #app {
   height: 100vh;
   display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-/* کادر بیت */
-#verse-box {
-  height: 35%;
-  padding: 20px;
-  background: linear-gradient(160deg, #1c1c1c, #111);
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  position: relative;
+  align-items: center;
 }
 
-#verse-text {
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.9;
-  text-align: center;
+.card {
+  width: 90%;
+  max-width: 420px;
+  padding: 22px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  transition: 0.3s;
 }
 
-/* شماره دفتر و بیت گوشه پایین */
+/* بیت */
+.card.verse {
+  background: #1c1c1c;
+  border-right: 4px solid #cfa14a;
+}
+
+/* مقدمه */
+.card.intro {
+  background: #16202a;
+  border-right: 4px solid #4aa3cf;
+}
+
+/* بخش */
+.card.section {
+  background: #1f1a14;
+  border-right: 4px solid #cf9f4a;
+}
+
 #verse-meta {
   font-size: 13px;
   opacity: 0.7;
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-}
-
-/* کادر توضیحات */
-#explain-box {
-  height: 65%;
-  padding: 22px;
-  background: #141414;
-  font-size: 16px;
-  line-height: 2;
-  overflow-y: auto;
-}
-
-/* چرخ دنده تنظیمات */
-#settingsBtn {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  font-size: 26px;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-/* پنل تنظیمات */
-#settingsPanel {
-  position: fixed;
-  top: 48px;
-  right: 12px;
-  background: #1a1a1a;
-  color: #fff;
-  border-radius: 14px;
-  padding: 10px;
-  width: 200px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-  z-index: 1002;
-  display: none;
-}
-
-#searchInput {
-  width: 100%;
-  padding: 8px 10px;
   margin-bottom: 10px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
+}
+
+#verse-text {
+  font-size: 18px;
+  line-height: 1.9;
+  white-space: pre-line;
+}
+
+#explain-box {
+  margin-top: 16px;
   font-size: 14px;
-}
-
-#daftarButtons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
-}
-
-.daftar-btn {
-  flex: 1 1 30%;
-  padding: 6px 0;
-  background: #222;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.daftar-btn:hover {
-  background: #444;
+  opacity: 0.85;
 }
