@@ -12,17 +12,12 @@
 
     <!-- کادر بیت -->
     <div id="verse-box">
-      <div id="verse-text">
-        بشنو از نی چون حکایت می‌کند  
-        از جدایی‌ها شکایت می‌کند
-      </div>
-      <div id="verse-meta">دفتر 1 · بیت 1</div>
+      <div id="verse-text"></div>
+      <div id="verse-meta"></div>
     </div>
 
     <!-- کادر توضیحات -->
-    <div id="explain-box">
-      این فقط یک متن نمونه است برای تست ساختار برنامه.
-    </div>
+    <div id="explain-box"></div>
 
   </div>
 
@@ -31,8 +26,15 @@
 
   <!-- پنل تنظیمات -->
   <div id="settingsPanel">
-    <div class="setting-item" data-action="search">جستجو</div>
-    <div class="setting-item" data-action="daftar">انتخاب دفتر</div>
+    <input type="text" id="searchInput" placeholder="جستجو بیت یا شماره" />
+    <div id="daftarButtons">
+      <button class="daftar-btn" data-daftar="1">دفتر ۱</button>
+      <button class="daftar-btn" data-daftar="2">دفتر ۲</button>
+      <button class="daftar-btn" data-daftar="3">دفتر ۳</button>
+      <button class="daftar-btn" data-daftar="4">دفتر ۴</button>
+      <button class="daftar-btn" data-daftar="5">دفتر ۵</button>
+      <button class="daftar-btn" data-daftar="6">دفتر ۶</button>
+    </div>
   </div>
 
   <script src="app.js"></script>
