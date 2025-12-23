@@ -1,31 +1,31 @@
 let index = 0;
 
-const verseBox = document.getElementById("verseText");
-const explainBox = document.getElementById("explainText");
-const infoBox = document.getElementById("infoText");
+const verseText = document.getElementById("verseText");
+const explainText = document.getElementById("explainText");
+const infoText = document.getElementById("infoText");
 
 function render() {
   const item = verses[index];
 
-  verseBox.innerText = "";
-  explainBox.innerText = "";
-  infoBox.innerText = "";
+  verseText.innerText = "";
+  explainText.innerText = "";
+  infoText.innerText = "";
 
   if (item.type === "intro") {
-    verseBox.innerText = item.text;
-    infoBox.innerText = `دفتر ${item.daftar} · مقدمه`;
+    verseText.innerText = item.text;
+    infoText.innerText = `دفتر ${item.daftar} · مقدمه`;
   }
 
   if (item.type === "section") {
-    verseBox.innerText = item.text;
-    explainBox.innerText = item.explain || "";
-    infoBox.innerText = `دفتر ${item.daftar} · بخش`;
+    verseText.innerText = item.text;
+    explainText.innerText = item.explain || "";
+    infoText.innerText = `دفتر ${item.daftar} · بخش`;
   }
 
   if (item.type === "verse") {
-    verseBox.innerText = item.text;
-    explainBox.innerText = item.explain || "";
-    infoBox.innerText = `دفتر ${item.daftar} · بیت ${item.number}`;
+    verseText.innerText = item.text;
+    explainText.innerText = item.explain || "";
+    infoText.innerText = `دفتر ${item.daftar} · بیت ${item.number}`;
   }
 }
 
@@ -43,36 +43,30 @@ function prev() {
   }
 }
 
-/* ===== سوییپ واقعی ===== */
+/* ===== سوییپ فقط با کشیدن واقعی ===== */
 
 let startX = 0;
-let startY = 0;
-let isMoving = false;
+let moved = false;
 
 document.body.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-  isMoving = false;
+  moved = false;
 });
 
 document.body.addEventListener("touchmove", e => {
-  isMoving = true;
+  moved = true;
 });
 
 document.body.addEventListener("touchend", e => {
-  if (!isMoving) return; // فقط ضربه بوده
+  if (!moved) return;
 
-  let endX = e.changedTouches[0].clientX;
-  let diffX = endX - startX;
+  const endX = e.changedTouches[0].clientX;
+  const diff = endX - startX;
 
-  if (Math.abs(diffX) < 60) return; // حرکت کم، بی‌اثر
+  if (Math.abs(diff) < 70) return;
 
-  if (diffX < 0) {
-    next();   // کشیدن به چپ → بعدی
-  } else {
-    prev();   // کشیدن به راست → قبلی
-  }
+  if (diff < 0) next();
+  else prev();
 });
 
-// شروع
 render();
