@@ -1,25 +1,52 @@
-* { box-sizing: border-box; margin:0; padding:0; font-family: Vazirmatn, sans-serif; }
-body { background: #0f1115; color:#fff; direction: rtl; height: 100vh; overflow: hidden; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Vazirmatn", system-ui, sans-serif;
+}
 
-#reader-area { height: 100vh; }
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0f0f0f;
+  color: #f2f2f2;
+}
 
-.container { display: flex; flex-direction: column; height: 100%; }
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-.bit-box { background: #1c1f26; border-radius: 16px; padding: 20px; text-align: center; height: 35%; display: flex; flex-direction: column; justify-content: center; }
-.bit-number { font-size: 16px; opacity: 0.8; margin-bottom: 8px; }
-.bit-text { font-size: 22px; line-height: 1.8; }
+/* کادر بیت */
+#verse-box {
+  height: 35%;
+  padding: 20px;
+  background: linear-gradient(160deg, #1c1c1c, #111);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-.desc-box { background: #f4f4f4; color: #111; border-radius: 18px; padding: 20px; flex: 1; overflow-y: auto; font-size: 16px; line-height: 2; }
+#verse-meta {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
 
-#top-bar { position: fixed; top: 0; left: 0; right: 0; height: 56px; display: flex; align-items: center; justify-content: flex-end; gap: 8px; padding: 0 12px; background: rgba(28, 31, 38, 0.95); border-bottom: 1px solid #333; backdrop-filter: blur(6px); z-index: 100; transform: translateY(-100%); transition: transform 0.3s ease; }
-#top-bar.visible { transform: translateY(0); }
+#verse-text {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.9;
+}
 
-#top-bar select, #top-bar input { height: 36px; border-radius: 10px; border: 1px solid #555; padding: 0 10px; font-size: 14px; background: #1c1f26; color: #fff; }
-#top-bar input::placeholder { color: #aaa; }
-
-#settings-btn { height: 36px; width: 36px; border-radius: 50%; border: none; background: #444; color: #fff; font-size: 16px; cursor: pointer; }
-
-#settings-panel { position: fixed; top: 60px; right: 12px; background: #1c1f26; padding: 16px; border-radius: 12px; display: flex; flex-direction: column; gap: 10px; z-index: 101; }
-#settings-panel.hidden { display: none; }
-
-.hidden { display: none; }
+/* کادر توضیحات */
+#explain-box {
+  height: 65%;
+  padding: 22px;
+  background: #141414;
+  font-size: 16px;
+  line-height: 2;
+  overflow: hidden;
+}
