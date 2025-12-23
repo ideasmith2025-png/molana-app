@@ -17,6 +17,7 @@ html, body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* کادر بیت */
@@ -32,13 +33,15 @@ html, body {
 #verse-meta {
   font-size: 13px;
   opacity: 0.7;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 #verse-text {
   font-size: 22px;
   font-weight: 600;
   line-height: 1.9;
+  text-align: center;
 }
 
 /* کادر توضیحات */
@@ -49,4 +52,39 @@ html, body {
   font-size: 16px;
   line-height: 2;
   overflow: hidden;
+}
+
+/* چرخ دنده تنظیمات */
+#settingsBtn {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  font-size: 26px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* پنل تنظیمات */
+#settingsPanel {
+  position: fixed;
+  top: 48px;
+  right: 12px;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 14px;
+  padding: 10px 0;
+  width: 180px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  z-index: 1002;
+  display: none;
+}
+
+.setting-item {
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.setting-item:hover {
+  background: #222;
 }
