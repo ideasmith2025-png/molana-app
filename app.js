@@ -39,7 +39,7 @@ function renderVerse() {
 renderVerse();
 
 // ==========================
-// سوییپ کل صفحه
+// سوییپ کل صفحه – جهت اصلاح
 // ==========================
 let touchStartX = 0;
 let touchEndX = 0;
@@ -56,10 +56,12 @@ swipeArea.addEventListener('touchend', e => {
 });
 
 function handleGesture() {
-  const diff = touchStartX - touchEndX;
+  const diff = touchEndX - touchStartX; // معکوس جهت
   if (diff > threshold) {
+    // کشیدن به راست → بیت بعدی
     if (currentIndex < verses.length - 1) currentIndex++;
   } else if (diff < -threshold) {
+    // کشیدن به چپ → بیت قبلی
     if (currentIndex > 0) currentIndex--;
   }
   renderVerse();
