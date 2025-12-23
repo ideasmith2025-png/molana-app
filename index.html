@@ -8,21 +8,41 @@
 </head>
 <body>
 <div id="app">
+
   <div id="topBar">
+    <div id="selectDaftar">
+      <select id="daftarSelect">
+        <option value="all">همه دفاتر</option>
+        <option value="1">دفتر اول</option>
+        <option value="2">دفتر دوم</option>
+        <option value="3">دفتر سوم</option>
+        <option value="4">دفتر چهارم</option>
+        <option value="5">دفتر پنجم</option>
+        <option value="6">دفتر ششم</option>
+      </select>
+    </div>
     <div id="infoText"></div>
     <div id="settingsToggle">⚙️</div>
   </div>
+
+  <div id="searchBar">
+    <input type="text" id="searchInput" placeholder="جستجوی بیت یا شماره...">
+  </div>
+
   <div id="content">
     <div id="verseBox"><div id="verseText"></div></div>
     <div id="explainBox"><div id="explainText"></div></div>
   </div>
+
   <div id="settingsPanel">
     <h3>تنظیمات</h3>
     <label><input type="checkbox" id="autoNext"> رفتن خودکار بعد از چند ثانیه</label>
     <label><input type="checkbox" id="enableSwipe"> فعال کردن کشیدن صفحه</label>
     <div id="closeSettings">بستن ✖️</div>
   </div>
+
 </div>
+
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>
