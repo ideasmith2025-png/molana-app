@@ -32,4 +32,39 @@ function renderVerse() {
   explainBox.innerText = v.explain;
 }
 
+// رندر اولیه
 renderVerse();
+
+// ==========================
+// سوییپ کل صفحه (موبایل)
+// ==========================
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleGesture() {
+  const diff = touchStartX - touchEndX;
+  const threshold = 50; // حساسیت سوییپ
+  if (diff > threshold) {
+    // سوییپ به چپ → بیت بعدی
+    if (currentIndex < verses.length - 1) {
+      currentIndex++;
+      renderVerse();
+    }
+  } else if (diff < -threshold) {
+    // سوییپ به راست → بیت قبلی
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderVerse();
+    }
+  }
+}
+
+// رو کل صفحه اعمال شود
+document.body.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.body.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+});
