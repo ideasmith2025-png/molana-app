@@ -1,38 +1,31 @@
-const data = [
+const books = [
   {
-    type: "intro",
-    daftar: 1,
-    text: "مقدمه دفتر اول"
+    id: 1,
+    title: "دفتر اول",
+    intro: "مقدمه دفتر اول",
+    sections: [
+      {
+        title: "بخش اول",
+        intro: "متن بخش اول",
+        verses: [
+          { text: "بیت اول دفتر اول", note: "توضیح بیت", num: 1 },
+          { text: "بیت دوم دفتر اول", note: "توضیح بیت", num: 2 }
+        ]
+      }
+    ]
   },
   {
-    type: "verse",
-    daftar: 1,
-    verse: "بشنو از نی چون حکایت می‌کند",
-    explain: "توضیح نمونه برای بیت",
-    number: 1
-  },
-  {
-    type: "section",
-    text: "بخش اول"
-  },
-  {
-    type: "verse",
-    daftar: 1,
-    verse: "کز جدایی‌ها شکایت می‌کند",
-    explain: "توضیح نمونه دوم",
-    number: 2
-  },
-
-  {
-    type: "intro",
-    daftar: 2,
-    text: "مقدمه دفتر دوم"
-  },
-  {
-    type: "verse",
-    daftar: 2,
-    verse: "این بیت نمونه دفتر دوم است",
-    explain: "توضیح موقت",
-    number: 1
+    id: 2,
+    title: "دفتر دوم",
+    intro: "مقدمه دفتر دوم",
+    sections: [
+      {
+        title: "بخش اول",
+        intro: "متن بخش",
+        verses: [
+          { text: "بیت اول دفتر دوم", note: "توضیح", num: 1 }
+        ]
+      }
+    ]
   }
 ];
