@@ -1,73 +1,46 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>مثنوی مولانا</title>
+  <title>مثنوی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-dark">
 
-<div id="app">
-
-  <!-- نوار بالا (مخفی) -->
-  <div id="topBar">
-    <input id="searchInput" type="text" placeholder="جستجو...">
-    <select id="daftarSelect">
-      <option value="1">دفتر ۱</option>
-      <option value="2">دفتر ۲</option>
-      <option value="3">دفتر ۳</option>
-      <option value="4">دفتر ۴</option>
-      <option value="5">دفتر ۵</option>
-      <option value="6">دفتر ۶</option>
-    </select>
-    <button id="settingsBtn">⚙️</button>
-  </div>
-
-  <!-- تنظیمات -->
-  <div id="settingsPanel">
-    <label>
-      <input type="checkbox" id="autoPlayToggle">
-      حرکت خودکار بیت‌ها
-    </label>
-
-    <label>
-      زمان (ثانیه):
-      <input type="number" id="autoPlayTime" value="5" min="2">
-    </label>
-
-    <label>
-      <input type="checkbox" id="tapToggle">
-      رفتن با لمس صفحه
-    </label>
-
-    <label>
-      تم رنگی:
-      <select id="themeSelect">
-        <option value="light">روشن</option>
-        <option value="dark">تیره</option>
-        <option value="sepia">سپیا</option>
-      </select>
-    </label>
-  </div>
-
-  <!-- محتوا -->
+  <!-- محتوای اصلی -->
   <div id="content">
 
+    <!-- کادر بیت -->
     <div id="verseBox">
-      <div id="verseText"></div>
-      <div id="verseInfo"></div>
+      <div id="verseText">
+        بشنو از نی چون حکایت می‌کند  
+        از جدایی‌ها شکایت می‌کند
+      </div>
+      <div id="verseInfo">
+        دفتر اول – بیت ۱
+      </div>
     </div>
 
+    <!-- کادر توضیح -->
     <div id="explainBox">
-      <div id="explainText"></div>
+      <div id="explainText">
+        این یک متن نمونه برای توضیح بیت است.  
+        فعلاً فقط برای تست ظاهر، رنگ‌بندی و خوانایی استفاده می‌شود.
+      </div>
     </div>
 
   </div>
 
-</div>
+  <!-- تنظیمات (فقط تغییر رنگ) -->
+  <div id="settings">
+    <select id="themeSelect">
+      <option value="theme-dark">تیره</option>
+      <option value="theme-blue">آبی</option>
+      <option value="theme-sepia">سپیا</option>
+    </select>
+  </div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
