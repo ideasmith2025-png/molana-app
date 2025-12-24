@@ -10,16 +10,17 @@
 
   <!-- نوار بالا -->
   <div id="topBar">
-    <div id="books">
-      <span>دفتر ۱</span>
-      <span>دفتر ۲</span>
-      <span>دفتر ۳</span>
-      <span>دفتر ۴</span>
-      <span>دفتر ۵</span>
-      <span>دفتر ۶</span>
+    <div id="searchBar">
+      <input type="text" id="searchInput" placeholder="جستجو بیت یا شماره...">
     </div>
-
-    <div id="searchIcon">🔍</div>
+    <div id="books">
+      <span class="book" data-book="1">دفتر ۱</span>
+      <span class="book" data-book="2">دفتر ۲</span>
+      <span class="book" data-book="3">دفتر ۳</span>
+      <span class="book" data-book="4">دفتر ۴</span>
+      <span class="book" data-book="5">دفتر ۵</span>
+      <span class="book" data-book="6">دفتر ۶</span>
+    </div>
     <div id="settingsIcon">⚙️</div>
   </div>
 
@@ -47,9 +48,16 @@
 
   <!-- محتوای اصلی -->
   <div id="content">
-    <!-- کادر بیت و توضیح (قبلاً ساختی – دست نمی‌زنیم) -->
+    <div id="verseBox">
+      <p id="verseText">مقدمه دفتر ۱</p>
+      <p id="verseNumber">دفتر ۱ - مقدمه</p>
+    </div>
+    <div id="explanationBox">
+      <p id="verseExplanation">این بخش توضیحات مقدمه دفتر ۱ است.</p>
+    </div>
   </div>
 
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
