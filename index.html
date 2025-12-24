@@ -2,51 +2,54 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>ابیات</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مثنوی</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-dark">
 
-<!-- نوار بالا -->
-<div id="topBar" class="hidden">
-  <input id="searchInput" type="text" placeholder="جستجو...">
-  <button id="booksBtn">دفاتر</button>
-  <button id="settingsBtn">⚙️</button>
-</div>
+  <!-- نوار بالا -->
+  <div id="topBar">
+    <div id="books">
+      <span>دفتر ۱</span>
+      <span>دفتر ۲</span>
+      <span>دفتر ۳</span>
+      <span>دفتر ۴</span>
+      <span>دفتر ۵</span>
+      <span>دفتر ۶</span>
+    </div>
 
-<!-- لیست دفاتر -->
-<div id="booksPanel" class="panel hidden"></div>
+    <div id="searchIcon">🔍</div>
+    <div id="settingsIcon">⚙️</div>
+  </div>
 
-<!-- تنظیمات -->
-<div id="settingsPanel" class="panel hidden">
-  <label>
-    <input type="checkbox" id="tapToggle">
-    رفتن با لمس
-  </label>
+  <!-- تنظیمات -->
+  <div id="settingsPanel" class="hidden">
+    <label>
+      <input type="checkbox" id="autoPlay">
+      حرکت خودکار بیت‌ها
+    </label>
 
-  <label>
-    حرکت خودکار (ثانیه)
-    <input type="number" id="autoTime" min="2" value="5">
-  </label>
+    <label>
+      <input type="checkbox" id="tapNext">
+      لمس برای بیت بعد
+    </label>
 
-  <label>
-    تم رنگ
-    <select id="themeSelect">
-      <option value="dark">تیره</option>
-      <option value="blue">آبی</option>
-      <option value="sepia">سپیا</option>
-    </select>
-  </label>
-</div>
+    <label>
+      تم برنامه
+      <select id="themeSelect">
+        <option value="dark">تیره</option>
+        <option value="light">روشن</option>
+        <option value="sepia">سپیا</option>
+      </select>
+    </label>
+  </div>
 
-<!-- محتوای اصلی -->
-<div id="content">
-  <div id="verseCard" class="card verse"></div>
-  <div id="noteCard" class="card note"></div>
-</div>
+  <!-- محتوای اصلی -->
+  <div id="content">
+    <!-- کادر بیت و توضیح (قبلاً ساختی – دست نمی‌زنیم) -->
+  </div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
