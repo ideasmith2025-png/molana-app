@@ -1,93 +1,154 @@
-body {
+/* =========================
+   تنظیمات کلی صفحه
+========================= */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  overflow: hidden;
+  padding: 0;
+  font-family: Tahoma, sans-serif;
 }
 
-:root {
-  --bg: #111;
-  --text: #eee;
-  --verse: #1e1e1e;
-  --note: #2a2a2a;
+body {
+  direction: rtl;
+  background-color: #121212;
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden; /* صفحه فیکس بدون اسکرول */
 }
 
-body.blue {
-  --bg: #0b1c2d;
-  --verse: #123a5a;
-  --note: #1c4c75;
+/* =========================
+   تم‌ها
+========================= */
+body.theme-dark {
+  background-color: #121212;
+  color: #ffffff;
 }
 
-body.sepia {
-  --bg: #2b1e14;
-  --verse: #3a2a1e;
-  --note: #4a3628;
+body.theme-light {
+  background-color: #fefefe;
+  color: #111111;
 }
 
+body.theme-sepia {
+  background-color: #f4ecd8;
+  color: #5b4636;
+}
+
+/* =========================
+   نوار بالا
+========================= */
 #topBar {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  right: 10px;
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: rgba(0,0,0,0.5);
+  position: relative;
   z-index: 10;
 }
 
-#topBar.hidden {
-  display: none;
+#searchBar input {
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 120px;
 }
 
-#topBar input {
-  flex: 1;
+#books {
+  display: flex;
+  gap: 5px;
 }
 
-button {
-  padding: 6px 10px;
+.book {
+  background-color: rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.panel {
-  position: fixed;
-  top: 60px;
+#settingsIcon {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* =========================
+   تنظیمات پنل
+========================= */
+#settingsPanel {
+  position: absolute;
+  top: 40px;
   right: 10px;
-  background: #000;
+  background-color: rgba(50,50,50,0.95);
+  color: #fff;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   z-index: 20;
 }
 
-.hidden {
+#settingsPanel.hidden {
   display: none;
 }
 
+#settingsPanel label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* =========================
+   کادر بیت و توضیح
+========================= */
 #content {
-  height: 100vh;
+  height: calc(100vh - 50px); /* از بالا نوار کم شده */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  padding: 20px;
 }
 
-.card {
-  padding: 20px;
-  border-radius: 16px;
+#verseBox {
+  flex: 0 0 35%; /* 35٪ برای بیت */
+  background-color: #1e1e1e;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card.verse {
-  background: var(--verse);
-  flex: 2;
+#verseBox p {
+  margin: 5px 0;
 }
 
-.card.note {
-  background: var(--note);
-  flex: 1;
-  opacity: 0.85;
-}
-
-.meta {
-  font-size: 12px;
+#verseNumber {
+  font-size: 0.9em;
   text-align: right;
-  opacity: 0.6;
+  opacity: 0.7;
+}
+
+#explanationBox {
+  flex: 0 0 65%; /* 65٪ برای توضیح */
+  background-color: #2a2a2a;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  overflow-y: auto;
+}
+
+/* =========================
+   اسکرول داخلی توضیحات
+========================= */
+#explanationBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+#explanationBox::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 3px;
+}
+
+#explanationBox::-webkit-scrollbar-track {
+  background: transparent;
 }
