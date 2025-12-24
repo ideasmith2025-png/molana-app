@@ -1,8 +1,8 @@
 // =========================
-// متغیرهای برنامه
+// متغیرها
 // =========================
 let currentBook = 1;
-let currentVerseIndex = -1; // -1 برای مقدمه
+let currentIndex = -1; // -1 برای مقدمه، >=0 برای بخش/بیت
 let autoPlayInterval = null;
 
 // DOM ها
@@ -20,57 +20,68 @@ const searchInput = document.getElementById("searchInput");
 const booksElems = document.querySelectorAll(".book");
 
 // =========================
-// نمایش بیت
+// گرفتن تمام صفحات شامل مقدمه، بخش‌ها و بیت‌ها
 // =========================
-function showVerse() {
-  const book = books[currentBook];
+function getAllPages(book) {
+  let pages = [];
+  pages.push({ type: "intro", text: book.introduction });
+  book.sections.forEach(sec => pages.push({ type: "section", text: sec.text }));
+  book.verses.forEach(verse => pages.push({ type: "verse", text: verse.text, explanation: verse.explanation }));
+  return pages;
+}
 
-  if (currentVerseIndex === -1) {
-    // مقدمه
-    verseText.textContent = book.introduction;
-    verseNumber.textContent = `دفتر ${currentBook} - مقدمه`;
-    verseExplanation.textContent = "";
+// =========================
+// نمایش صفحه فعلی
+// =========================
+function showPage() {
+  const book = books[currentBook];
+  const pages = getAllPages(book);
+  const page = pages[currentIndex + 1]; // because -1 = مقدمه
+
+  if (!page) return;
+
+  verseText.textContent = page.text;
+  verseExplanation.textContent = page.explanation || "";
+
+  if (page.type === "verse") {
+    verseNumber.textContent = `دفتر ${currentBook} - بیت ${currentIndex + 1}`;
   } else {
-    const verse = book.verses[currentVerseIndex];
-    verseText.textContent = verse.text;
-    verseNumber.textContent = `دفتر ${currentBook} - بیت ${currentVerseIndex + 1}`;
-    verseExplanation.textContent = verse.explanation;
+    verseNumber.textContent = ""; // مقدمه و بخش بدون شماره
   }
 }
 
 // =========================
-// رفتن به بیت بعد
+// رفتن به صفحه بعد
 // =========================
-function nextVerse() {
+function nextPage() {
   const book = books[currentBook];
+  const pages = getAllPages(book);
 
-  if (currentVerseIndex < book.verses.length - 1) {
-    currentVerseIndex++;
+  if (currentIndex < pages.length - 1) {
+    currentIndex++;
   } else {
-    // رفتن به مقدمه دفتر بعد
     if (currentBook < 6) {
       currentBook++;
-      currentVerseIndex = -1;
-    } else {
-      currentVerseIndex = book.verses.length - 1; // آخرین بیت دفتر ۶
+      currentIndex = -1; // مقدمه دفتر بعد
     }
   }
-  showVerse();
+  showPage();
 }
 
 // =========================
-// رفتن به بیت قبل (سوایپ برگشت)
+// رفتن به صفحه قبل
 // =========================
-function prevVerse() {
-  if (currentVerseIndex > -1) {
-    currentVerseIndex--;
+function prevPage() {
+  if (currentIndex > -1) {
+    currentIndex--;
   } else {
     if (currentBook > 1) {
       currentBook--;
-      currentVerseIndex = books[currentBook].verses.length - 1;
+      const pages = getAllPages(books[currentBook]);
+      currentIndex = pages.length - 1;
     }
   }
-  showVerse();
+  showPage();
 }
 
 // =========================
@@ -79,8 +90,8 @@ function prevVerse() {
 booksElems.forEach(bookElem => {
   bookElem.addEventListener("click", () => {
     currentBook = parseInt(bookElem.dataset.book);
-    currentVerseIndex = -1; // مقدمه
-    showVerse();
+    currentIndex = -1; // مقدمه
+    showPage();
     hideSettings();
   });
 });
@@ -103,84 +114,75 @@ themeSelect.addEventListener("change", () => {
 });
 
 // =========================
-// حرکت خودکار بیت‌ها
+// حرکت خودکار صفحات
 // =========================
 function startAutoPlay() {
   if (autoPlayInterval) clearInterval(autoPlayInterval);
   if (autoPlayCheck.checked) {
-    autoPlayInterval = setInterval(nextVerse, 5000); // ۵ ثانیه بین بیت‌ها
+    autoPlayInterval = setInterval(nextPage, 5000); // ۵ ثانیه بین صفحات
   }
 }
 
 autoPlayCheck.addEventListener("change", startAutoPlay);
 
 // =========================
-// لمس برای بیت بعد
+// لمس برای رفتن به صفحه بعد
 // =========================
 verseBox.addEventListener("click", () => {
   if (tapNextCheck.checked) {
-    nextVerse();
+    nextPage();
   }
 });
 
 // =========================
-// سوایپ چپ/راست برای حرکت بیت‌ها
+// سوایپ چپ/راست
 // =========================
 let touchStartX = 0;
 let touchEndX = 0;
 
 function handleGesture() {
-  if (touchEndX < touchStartX - 30) {
-    // کشیدن به چپ → بیت بعد
-    nextVerse();
-  }
-  if (touchEndX > touchStartX + 30) {
-    // کشیدن به راست → بیت قبل
-    prevVerse();
-  }
+  if (touchEndX < touchStartX - 30) nextPage();
+  if (touchEndX > touchStartX + 30) prevPage();
 }
 
-verseBox.addEventListener("touchstart", e => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
+verseBox.addEventListener("touchstart", e => touchStartX = e.changedTouches[0].screenX);
 verseBox.addEventListener("touchend", e => {
   touchEndX = e.changedTouches[0].screenX;
   handleGesture();
 });
 
 // =========================
-// جستجو بیت یا شماره
+// جستجو بر اساس متن یا شماره بیت
 // =========================
 searchInput.addEventListener("input", () => {
   const query = searchInput.value.trim();
   if (!query) return;
 
   for (let b = 1; b <= 6; b++) {
-    const book = books[b];
+    const pages = getAllPages(books[b]);
     if (query.includes("بیت")) {
       const num = parseInt(query.replace(/[^\d]/g, ""));
-      if (!isNaN(num) && num <= book.verses.length) {
+      const verseIndex = pages.findIndex(p => p.type === "verse");
+      if (!isNaN(num) && num <= pages.filter(p => p.type === "verse").length) {
         currentBook = b;
-        currentVerseIndex = num - 1;
-        showVerse();
+        currentIndex = pages.findIndex((p, idx) => p.type === "verse" && idx === num - 1);
+        showPage();
         break;
       }
     } else {
-      // جستجوی متن
-      const idx = book.verses.findIndex(v => v.text.includes(query));
+      const idx = pages.findIndex(p => p.text.includes(query));
       if (idx !== -1) {
         currentBook = b;
-        currentVerseIndex = idx;
-        showVerse();
+        currentIndex = idx - 1; // چون -1 = مقدمه
+        showPage();
         break;
       }
     }
   }
 });
-  
+
 // =========================
 // شروع برنامه
 // =========================
-showVerse();
+showPage();
 startAutoPlay();
