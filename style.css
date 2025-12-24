@@ -5,93 +5,54 @@
 }
 
 body {
-  font-family: sans-serif;
-  background: #f5f5f5;
-  overflow: hidden;
-}
-
-#app {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+  background: #e5e5e5;
 }
 
-/* نوار بالا */
-#topBar {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  padding: 8px;
-  display: flex;
-  gap: 10px;
-  background: rgba(0,0,0,0.85);
-  transform: translateY(-100%);
-  transition: 0.3s;
-}
-
-#topBar.show {
-  transform: translateY(0);
-}
-
-#topBar input,
-#topBar select,
-#topBar button {
-  padding: 6px;
-  font-size: 14px;
-}
-
-/* تنظیمات */
-#settingsPanel {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  width: 220px;
-  background: #222;
-  color: #fff;
-  padding: 10px;
-  display: none;
-  border-radius: 10px;
-}
-
-#settingsPanel label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-/* محتوا */
+/* کانتینر اصلی */
 #content {
-  width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  padding: 12px;
 }
 
+/* کادر بیت */
 #verseBox {
   height: 35%;
-  background: #222;
-  color: #fff;
   padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+  background: var(--verse-bg);
+  color: var(--verse-text);
   position: relative;
 }
 
 #verseText {
   font-size: 22px;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 #verseInfo {
   position: absolute;
   bottom: 10px;
-  right: 15px;
+  left: 15px;
   font-size: 12px;
   opacity: 0.8;
 }
 
+/* کادر توضیحات */
 #explainBox {
   height: 65%;
-  background: #fff;
   padding: 20px;
-  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  background: var(--explain-bg);
+  color: var(--explain-text);
 }
 
 #explainText {
@@ -99,20 +60,39 @@ body {
   line-height: 2;
 }
 
-/* تم‌ها */
-body.dark {
-  background: #111;
+/* تنظیمات */
+#settings {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
 }
 
-body.dark #explainBox {
-  background: #1a1a1a;
-  color: #eee;
+#settings select {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
 }
 
-body.sepia {
-  background: #f1e7d0;
+/* ===== تم‌ها ===== */
+
+body.theme-dark {
+  --verse-bg: #222;
+  --verse-text: #ffffff;
+  --explain-bg: #ffffff;
+  --explain-text: #222;
 }
 
-body.sepia #explainBox {
-  background: #f7f0dc;
+body.theme-blue {
+  --verse-bg: #1f3a5f;
+  --verse-text: #ffffff;
+  --explain-bg: #eef4fb;
+  --explain-text: #1f3a5f;
+}
+
+body.theme-sepia {
+  --verse-bg: #5b4636;
+  --verse-text: #fffaf0;
+  --explain-bg: #f6efe3;
+  --explain-text: #3b2f24;
 }
