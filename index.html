@@ -1,46 +1,52 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>مثنوی</title>
+  <title>ابیات</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-dark">
+<body>
 
-  <!-- محتوای اصلی -->
-  <div id="content">
+<!-- نوار بالا -->
+<div id="topBar" class="hidden">
+  <input id="searchInput" type="text" placeholder="جستجو...">
+  <button id="booksBtn">دفاتر</button>
+  <button id="settingsBtn">⚙️</button>
+</div>
 
-    <!-- کادر بیت -->
-    <div id="verseBox">
-      <div id="verseText">
-        بشنو از نی چون حکایت می‌کند  
-        از جدایی‌ها شکایت می‌کند
-      </div>
-      <div id="verseInfo">
-        دفتر اول – بیت ۱
-      </div>
-    </div>
+<!-- لیست دفاتر -->
+<div id="booksPanel" class="panel hidden"></div>
 
-    <!-- کادر توضیح -->
-    <div id="explainBox">
-      <div id="explainText">
-        این یک متن نمونه برای توضیح بیت است.  
-        فعلاً فقط برای تست ظاهر، رنگ‌بندی و خوانایی استفاده می‌شود.
-      </div>
-    </div>
+<!-- تنظیمات -->
+<div id="settingsPanel" class="panel hidden">
+  <label>
+    <input type="checkbox" id="tapToggle">
+    رفتن با لمس
+  </label>
 
-  </div>
+  <label>
+    حرکت خودکار (ثانیه)
+    <input type="number" id="autoTime" min="2" value="5">
+  </label>
 
-  <!-- تنظیمات (فقط تغییر رنگ) -->
-  <div id="settings">
+  <label>
+    تم رنگ
     <select id="themeSelect">
-      <option value="theme-dark">تیره</option>
-      <option value="theme-blue">آبی</option>
-      <option value="theme-sepia">سپیا</option>
+      <option value="dark">تیره</option>
+      <option value="blue">آبی</option>
+      <option value="sepia">سپیا</option>
     </select>
-  </div>
+  </label>
+</div>
 
-  <script src="app.js"></script>
+<!-- محتوای اصلی -->
+<div id="content">
+  <div id="verseCard" class="card verse"></div>
+  <div id="noteCard" class="card note"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
