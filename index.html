@@ -1,63 +1,66 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مثنوی</title>
+  <title>Sama</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-dark">
+<body>
 
-  <!-- نوار بالا -->
-  <div id="topBar">
-    <div id="searchBar">
-      <input type="text" id="searchInput" placeholder="جستجو بیت یا شماره...">
+  <header id="topBar">
+    <input id="searchInput" type="text" placeholder="جستجو بیت یا شماره">
+    <button id="menuBtn">⋮</button>
+  </header>
+
+  <div id="menu" class="hidden">
+    <div class="menu-section">
+      <label>دفتر</label>
+      <select id="daftarSelect">
+        <option value="1">دفتر اول</option>
+        <option value="2">دفتر دوم</option>
+        <option value="3">دفتر سوم</option>
+        <option value="4">دفتر چهارم</option>
+        <option value="5">دفتر پنجم</option>
+        <option value="6">دفتر ششم</option>
+      </select>
     </div>
-    <div id="books">
-      <span class="book" data-book="1">دفتر ۱</span>
-      <span class="book" data-book="2">دفتر ۲</span>
-      <span class="book" data-book="3">دفتر ۳</span>
-      <span class="book" data-book="4">دفتر ۴</span>
-      <span class="book" data-book="5">دفتر ۵</span>
-      <span class="book" data-book="6">دفتر ۶</span>
-    </div>
-    <div id="settingsIcon">⚙️</div>
-  </div>
 
-  <!-- تنظیمات -->
-  <div id="settingsPanel" class="hidden">
-    <label>
-      <input type="checkbox" id="autoPlay">
-      حرکت خودکار بیت‌ها
-    </label>
-
-    <label>
-      <input type="checkbox" id="tapNext">
-      لمس برای بیت بعد
-    </label>
-
-    <label>
-      تم برنامه
+    <div class="menu-section">
+      <label>تم</label>
       <select id="themeSelect">
         <option value="dark">تیره</option>
-        <option value="light">روشن</option>
+        <option value="blue">آبی</option>
         <option value="sepia">سپیا</option>
       </select>
-    </label>
+    </div>
   </div>
 
-  <!-- محتوای اصلی -->
-  <div id="content">
-    <div id="verseBox">
-      <p id="verseText">مقدمه دفتر ۱</p>
-      <p id="verseNumber">دفتر ۱ - مقدمه</p>
+  <main id="cardArea">
+    <div id="verseCard">
+      <div id="verseText"></div>
+      <div id="verseMeta"></div>
     </div>
-    <div id="explanationBox">
-      <p id="verseExplanation">این بخش توضیحات مقدمه دفتر ۱ است.</p>
+
+    <div id="explainCard">
+      <div id="explainText"></div>
     </div>
-  </div>
+  </main>
 
   <script src="data.js"></script>
-  <script src="script.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js");
+    }
+  </script>
+
 </body>
 </html>
