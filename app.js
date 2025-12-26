@@ -1,72 +1,78 @@
-let b = 0, s = 0, v = -1;
-let autoTimer = null;
-let tapEnabled = false;
+let currentDaftar = 1;
+let currentIndex = -1;
+let items = [];
 
-const verseCard = document.getElementById("verseCard");
-const noteCard = document.getElementById("noteCard");
+const verseText = document.getElementById("verseText");
+const verseMeta = document.getElementById("verseMeta");
+const explainText = document.getElementById("explainText");
 
-function showNext() {
-  const book = books[b];
-  const section = book.sections[s];
+function loadDaftar(n) {
+  const d = DATA.find(x => x.daftar == n);
+  items = [{ verse: d.intro, explain: "" }, ...d.items];
+  currentIndex = 0;
+  render();
+}
 
-  v++;
-  if (v === -1) {
-    verseCard.innerHTML = book.intro;
-    noteCard.innerHTML = "";
-    return;
+function render() {
+  const item = items[currentIndex];
+  verseText.textContent = item.verse;
+  explainText.textContent = item.explain || "";
+  verseMeta.textContent =
+    currentIndex === 0 ? "" : `دفتر ${currentDaftar} · بیت ${currentIndex}`;
+}
+
+function next() {
+  if (currentIndex < items.length - 1) {
+    currentIndex++;
+    render();
   }
-
-  if (v >= section.verses.length) return;
-
-  const verse = section.verses[v];
-  verseCard.innerHTML = `
-    ${verse.text}
-    <div class="meta">دفتر ${book.id} – بیت ${verse.num}</div>
-  `;
-  noteCard.innerHTML = verse.note;
 }
 
-function toggleTopBar() {
-  document.getElementById("topBar").classList.toggle("hidden");
+function prev() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    render();
+  }
 }
 
-document.body.addEventListener("click", e => {
-  if (tapEnabled) showNext();
-  toggleTopBar();
-});
+let startX = 0;
 
-let startX = null;
 document.body.addEventListener("touchstart", e => {
   startX = e.touches[0].clientX;
 });
+
 document.body.addEventListener("touchend", e => {
-  const dx = e.changedTouches[0].clientX - startX;
-  if (dx > 50) showNext();
+  const endX = e.changedTouches[0].clientX;
+  if (endX > startX + 50) next();
+  if (endX < startX - 50) prev();
 });
 
-document.getElementById("settingsBtn").onclick = e => {
-  e.stopPropagation();
-  document.getElementById("settingsPanel").classList.toggle("hidden");
+document.body.addEventListener("click", e => {
+  const w = window.innerWidth;
+  if (e.clientX < w / 2) next();
+  else prev();
+});
+
+document.getElementById("menuBtn").onclick = () => {
+  document.getElementById("menu").classList.toggle("hidden");
 };
 
-document.getElementById("booksBtn").onclick = e => {
-  e.stopPropagation();
-  const panel = document.getElementById("booksPanel");
-  panel.innerHTML = books.map((bk,i)=>`<div onclick="b=${i};s=0;v=-1;showNext()">${bk.title}</div>`).join("");
-  panel.classList.toggle("hidden");
-};
-
-document.getElementById("tapToggle").onchange = e => {
-  tapEnabled = e.target.checked;
-};
-
-document.getElementById("autoTime").onchange = e => {
-  clearInterval(autoTimer);
-  autoTimer = setInterval(showNext, e.target.value * 1000);
+document.getElementById("daftarSelect").onchange = e => {
+  currentDaftar = e.target.value;
+  loadDaftar(currentDaftar);
 };
 
 document.getElementById("themeSelect").onchange = e => {
   document.body.className = e.target.value;
 };
 
-showNext();
+document.getElementById("searchInput").oninput = e => {
+  const q = e.target.value;
+  const i = items.findIndex(x => x.verse.includes(q));
+  if (i >= 0) {
+    currentIndex = i;
+    render();
+  }
+};
+
+loadDaftar(1);
