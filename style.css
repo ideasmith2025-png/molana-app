@@ -1,154 +1,121 @@
-/* =========================
-   تنظیمات کلی صفحه
-========================= */
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  font-family: Tahoma, sans-serif;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
 }
 
-body {
-  direction: rtl;
-  background-color: #121212;
-  color: #ffffff;
-  height: 100vh;
-  overflow: hidden; /* صفحه فیکس بدون اسکرول */
+:root {
+  --bg: #0f172a;
+  --card1: #1e293b;
+  --card2: #020617;
+  --text: #e5e7eb;
 }
 
-/* =========================
-   تم‌ها
-========================= */
-body.theme-dark {
-  background-color: #121212;
-  color: #ffffff;
+body.blue {
+  --bg: #0b1c2d;
+  --card1: #123456;
+  --card2: #0a2239;
 }
 
-body.theme-light {
-  background-color: #fefefe;
-  color: #111111;
+body.sepia {
+  --bg: #2b2118;
+  --card1: #3a2e24;
+  --card2: #1f160f;
 }
 
-body.theme-sepia {
-  background-color: #f4ecd8;
-  color: #5b4636;
-}
-
-/* =========================
-   نوار بالا
-========================= */
 #topBar {
+  height: 48px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
-  background-color: rgba(0,0,0,0.5);
-  position: relative;
+  gap: 8px;
+  padding: 0 10px;
+}
+
+#searchInput {
+  flex: 1;
+  height: 32px;
+  border-radius: 16px;
+  border: none;
+  padding: 0 12px;
+}
+
+#menuBtn {
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: var(--text);
+}
+
+#menu {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  background: var(--card1);
+  border-radius: 12px;
+  padding: 10px;
+  width: 180px;
   z-index: 10;
 }
 
-#searchBar input {
-  padding: 5px 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 120px;
-}
-
-#books {
-  display: flex;
-  gap: 5px;
-}
-
-.book {
-  background-color: rgba(255,255,255,0.2);
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#settingsIcon {
-  cursor: pointer;
-  font-size: 20px;
-}
-
-/* =========================
-   تنظیمات پنل
-========================= */
-#settingsPanel {
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  background-color: rgba(50,50,50,0.95);
-  color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 20;
-}
-
-#settingsPanel.hidden {
+.hidden {
   display: none;
 }
 
-#settingsPanel label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.menu-section {
+  margin-bottom: 10px;
 }
 
-/* =========================
-   کادر بیت و توضیح
-========================= */
-#content {
-  height: calc(100vh - 50px); /* از بالا نوار کم شده */
+.menu-section label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.menu-section select {
+  width: 100%;
+}
+
+#cardArea {
+  height: calc(100% - 48px);
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  padding: 8px;
 }
 
-#verseBox {
-  flex: 0 0 35%; /* 35٪ برای بیت */
-  background-color: #1e1e1e;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 12px;
+#verseCard {
+  height: 35%;
+  background: var(--card1);
+  border-radius: 18px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#verseBox p {
-  margin: 5px 0;
+#verseText {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
-#verseNumber {
-  font-size: 0.9em;
+#verseMeta {
+  font-size: 12px;
   text-align: right;
-  opacity: 0.7;
 }
 
-#explanationBox {
-  flex: 0 0 65%; /* 65٪ برای توضیح */
-  background-color: #2a2a2a;
-  margin: 10px;
-  padding: 10px;
-  border-radius: 12px;
+#explainCard {
+  height: 65%;
+  background: var(--card2);
+  border-radius: 18px;
+  padding: 16px;
   overflow-y: auto;
-}
-
-/* =========================
-   اسکرول داخلی توضیحات
-========================= */
-#explanationBox::-webkit-scrollbar {
-  width: 6px;
-}
-
-#explanationBox::-webkit-scrollbar-thumb {
-  background-color: rgba(255,255,255,0.3);
-  border-radius: 3px;
-}
-
-#explanationBox::-webkit-scrollbar-track {
-  background: transparent;
 }
